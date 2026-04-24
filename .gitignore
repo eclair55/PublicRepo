@@ -21,3 +21,6 @@ Thumbs.db
 .vs/
 *.user
 *.suo
+
+# Backend
+Backend\ReporitorySystem\ReporitorySystem\wwwroot
