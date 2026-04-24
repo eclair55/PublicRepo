@@ -1,6 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Navbar from './components/Navbar';
+import Layout from './components/Layout';
 import Home from './pages/Home';
 import Login from './pages/Login';
 import Dashboard from './pages/Dashboard';
@@ -19,40 +20,24 @@ function App() {
   return (
     <Router>
       <div className="min-h-screen bg-gray-50">
-        <Navbar />
         <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/login" element={<Login />} />
-          <Route path="/document/:id" element={<DocumentDetails />} />
+          <Route path="/" element={<><Navbar /><Home /></>} />
+          <Route path="/login" element={<><Navbar /><Login /></>} />
+          <Route path="/document/:id" element={<><Navbar /><DocumentDetails /></>} />
           <Route
-            path="/admin/dashboard"
+            path="/admin/*"
             element={
               <ProtectedRoute>
-                <Dashboard />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/admin/upload"
-            element={
-              <ProtectedRoute>
-                <UploadDocument />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/admin/sectors"
-            element={
-              <ProtectedRoute>
-                <Sectors />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/admin/councilors"
-            element={
-              <ProtectedRoute>
-                <Councilors />
+                <Layout>
+                  <Routes>
+                    <Route path="dashboard" element={<Dashboard />} />
+                    <Route path="upload" element={<UploadDocument />} />
+                    <Route path="sectors" element={<Sectors />} />
+                    <Route path="councilors" element={<Councilors />} />
+                    <Route path="documents" element={<Home isAdmin={true} />} />
+                    <Route path="*" element={<Navigate to="dashboard" />} />
+                  </Routes>
+                </Layout>
               </ProtectedRoute>
             }
           />
