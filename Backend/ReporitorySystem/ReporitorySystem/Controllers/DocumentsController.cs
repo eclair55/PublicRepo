@@ -46,7 +46,8 @@ public class DocumentsController : ControllerBase
             AuthorId = dto.AuthorId,
             EnactmentDate = dto.EnactmentDate?.ToUniversalTime(),
             UploadedById = dto.UploadedById,
-            Status = "Pending"
+            Status = "Pending",
+            Term = dto.term
         };
 
         _context.Documents.Add(document);

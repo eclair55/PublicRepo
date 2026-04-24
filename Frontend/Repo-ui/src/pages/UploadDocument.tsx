@@ -9,6 +9,7 @@ const UploadDocument = () => {
     documentType: 'Ordinance',
     sectorId: '',
     authorId: '',
+    term: '',
     enactmentDate: '',
   });
   const [file, setFile] = useState(null);
@@ -35,16 +36,25 @@ const UploadDocument = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!file) return alert('Please select a file');
+    if (!formData.term) return alert('Please select a term');
 
     setLoading(true);
     const data = new FormData();
-    Object.keys(formData).forEach(key => data.append(key, formData[key]));
+    Object.keys(formData).forEach(key => {
+      if (formData[key]) {
+        data.append(key, formData[key]);
+      }
+    });
     data.append('file', file);
+
+    // Debug: log the form data being sent
+    console.log('Uploading document with data:', Object.fromEntries(data));
 
     try {
       await documentService.upload(data);
       navigate('/admin/dashboard');
     } catch (err) {
+      console.error('Upload error:', err);
       alert('Error uploading document');
     } finally {
       setLoading(false);
@@ -113,6 +123,21 @@ const UploadDocument = () => {
               {councilors.map(c => <option key={c.id} value={c.id}>{c.name}</option>)}
             </select>
           </div>
+          <div>
+            <label className="block text-sm font-medium mb-1">Term *</label>
+            <select
+              className="w-full border p-2 rounded"
+              required
+              value={formData.term}
+              onChange={(e) => setFormData({...formData, term: e.target.value})}
+            >
+              <option value="">Select Term</option>
+              <option value="2022-2025">2022-2025</option>
+              <option value="2025-2028">2025-2028</option>
+            </select>
+          </div>
+        </div>
+        <div className="grid grid-cols-2 gap-4 mb-4">
           <div>
             <label className="block text-sm font-medium mb-1">Enactment Date</label>
             <input
