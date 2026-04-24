@@ -25,6 +25,9 @@ const Navbar = () => {
               <Link to="/admin/dashboard" className="hover:text-blue-200 flex items-center">
                 <LayoutDashboard size={18} className="mr-1" /> Admin Portal
               </Link>
+              <button onClick={handleLogout} className="hover:text-blue-200 flex items-center">
+                <LogOut size={18} className="mr-1" /> Logout
+              </button>
             </>
           ) : (
             <>

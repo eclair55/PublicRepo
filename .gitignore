@@ -22,5 +22,5 @@ Thumbs.db
 *.user
 *.suo
 
-# Backend
-Backend\ReporitorySystem\ReporitorySystem\wwwroot
+# Ignore uploaded files
+wwwroot/uploads/
