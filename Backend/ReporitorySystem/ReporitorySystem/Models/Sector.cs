@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 public class Sector
 {
@@ -9,5 +10,6 @@ public class Sector
     [Required]
     public string Name { get; set; }
 
+    [JsonIgnore]
     public ICollection<Document> Documents { get; set; }
 }
