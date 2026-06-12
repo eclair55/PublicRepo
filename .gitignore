@@ -21,3 +21,7 @@ Thumbs.db
 .vs/
 *.user
 *.suo
+
+# Ignore uploaded files
+wwwroot/uploads/
+/Backend/ReporitorySystem/ReporitorySystem/wwwroot/uploads/

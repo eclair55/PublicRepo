@@ -20,20 +20,22 @@ const Navbar = () => {
           LGU Document Repository
         </Link>
         <div className="space-x-4 flex items-center">
-          <Link to="/" className="hover:text-blue-200">Documents</Link>
           {user ? (
             <>
               <Link to="/admin/dashboard" className="hover:text-blue-200 flex items-center">
-                <LayoutDashboard size={18} className="mr-1" /> Dashboard
+                <LayoutDashboard size={18} className="mr-1" /> Admin Portal
               </Link>
               <button onClick={handleLogout} className="hover:text-blue-200 flex items-center">
                 <LogOut size={18} className="mr-1" /> Logout
               </button>
             </>
           ) : (
-            <Link to="/login" className="hover:text-blue-200 flex items-center">
-              <LogIn size={18} className="mr-1" /> Admin Login
-            </Link>
+            <>
+              <Link to="/" className="hover:text-blue-200">Documents</Link>
+              <Link to="/login" className="hover:text-blue-200 flex items-center">
+                <LogIn size={18} className="mr-1" /> Admin Login
+              </Link>
+            </>
           )}
         </div>
       </div>

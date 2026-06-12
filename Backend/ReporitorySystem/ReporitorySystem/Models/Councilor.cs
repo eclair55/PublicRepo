@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 public class Councilor
 {
@@ -11,5 +12,6 @@ public class Councilor
 
     public string Term { get; set; }
 
+    [JsonIgnore]
     public ICollection<Document> Documents { get; set; }
 }
