@@ -15,4 +15,6 @@ public class DocumentUploadDto
     public int? UploadedById { get; set; }
 
     public IFormFile File { get; set; }
+
+    public string term { get; set; }
 }
